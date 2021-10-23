@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev --respawn --ignore-watch node_modules --exit-child -- ./src/server.ts",
     "lint": "eslint src --max-warnings=0",
     "prepare": "husky install",
     "test": "dotenv -e .env.test -- npx jest --passWithNoTests",
