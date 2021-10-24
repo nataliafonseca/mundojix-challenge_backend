@@ -11,6 +11,8 @@ import { CreateUserController } from './useCases/createUserUseCase/CreateUserCon
 import { ListUsersController } from './useCases/listUsersUseCase/ListUsersController';
 import { UploadDocumentController } from './useCases/uploadDocumentUseCase/UploadDocumentController';
 import { ApproveDocumentController } from './useCases/approveDocumentUseCase/ApproveDocumentController';
+import { ListAllDocumentsController } from './useCases/listAllDocumentsUseCase/ListAllDocumentsController';
+import { ListUserDocumentsController } from './useCases/listUserDocumentsUseCase/ListUserDocumentsController';
 
 export const router = Router();
 
@@ -19,6 +21,8 @@ const listUserController = new ListUsersController();
 const authenticateUserController = new AuthenticateUserController();
 const createDocumentController = new CreateDocumentController();
 const uploadDocumentController = new UploadDocumentController();
+const listAllDocumentsController = new ListAllDocumentsController();
+const listUserDocumentsController = new ListUserDocumentsController();
 const approveDocumentController = new ApproveDocumentController();
 const rejectDocumentController = new RejectDocumentController();
 
@@ -33,19 +37,31 @@ router.post(
   createUserController.handle
 );
 router.post('/login', authenticateUserController.handle);
-
 router.get(
   '/users',
   ensureAuthenticated,
   ensureAdmin,
   listUserController.handle
 );
+
 router.post(
   '/documents',
   ensureAuthenticated,
   ensureStudent,
   multer(multerConfig).single('file'),
   createDocumentController.handle
+);
+router.get(
+  '/documents',
+  ensureAuthenticated,
+  ensureAdmin,
+  listAllDocumentsController.handle
+);
+router.get(
+  '/documents/user',
+  ensureAuthenticated,
+  ensureStudent,
+  listUserDocumentsController.handle
 );
 router.patch(
   '/documents/upload',
