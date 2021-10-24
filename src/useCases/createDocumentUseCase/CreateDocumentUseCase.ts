@@ -1,5 +1,5 @@
 import { AppError } from '../../errors/AppError';
-import prismaClient from '../../prisma';
+import { prismaClient } from '../../prisma';
 
 type Document = {
   id: string;

@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { AppError } from '../../errors/AppError';
-import prismaClient from '../../prisma';
+import { prismaClient } from '../../prisma';
 
 type User = {
   id: string;
