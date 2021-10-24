@@ -27,7 +27,7 @@ model Document {
   description String
   hours       Int
   type        String
-  status      Boolean  @default(false)
+  status      Int      @default(0)
   createdAt   DateTime @default(now()) @db.Timestamp(6)
 
   user    User   @relation(fields: [user_id], references: [id])

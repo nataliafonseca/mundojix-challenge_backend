@@ -7,7 +7,7 @@ type Document = {
   pdf: string;
   hours: number;
   type: string;
-  status: boolean;
+  status: number;
   user_id: string;
   createdAt: Date;
 };
