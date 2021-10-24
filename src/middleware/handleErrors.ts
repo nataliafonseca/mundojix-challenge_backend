@@ -9,10 +9,10 @@ export function handleErrors(
   next: NextFunction
 ): Response {
   if (err instanceof AppError) {
-    return response.status(err.statusCode).json({ Error: err.message });
+    return response.status(err.statusCode).json({ message: err.message });
   }
 
   return response
     .status(500)
-    .json({ Error: `Internal server error - ${err.message}` });
+    .json({ message: `Internal server error - ${err.message}` });
 }
