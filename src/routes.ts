@@ -4,21 +4,23 @@ import multerConfig from './config/multer';
 import { ensureAdmin } from './middleware/ensureAdmin';
 import { ensureAuthenticated } from './middleware/ensureAuthenticated';
 import { ensureStudent } from './middleware/ensureStudent';
-import { RejectDocumentController } from './useCases/rejectDocumentUseCase/RejectDocumentController';
+import { ApproveDocumentController } from './useCases/approveDocumentUseCase/ApproveDocumentController';
 import { AuthenticateUserController } from './useCases/authenticateUserUseCase/AuthenticateUserController';
 import { CreateDocumentController } from './useCases/createDocumentUseCase/CreateDocumentController';
 import { CreateUserController } from './useCases/createUserUseCase/CreateUserController';
-import { ListUsersController } from './useCases/listUsersUseCase/ListUsersController';
-import { UploadDocumentController } from './useCases/uploadDocumentUseCase/UploadDocumentController';
-import { ApproveDocumentController } from './useCases/approveDocumentUseCase/ApproveDocumentController';
 import { ListAllDocumentsController } from './useCases/listAllDocumentsUseCase/ListAllDocumentsController';
 import { ListUserDocumentsController } from './useCases/listUserDocumentsUseCase/ListUserDocumentsController';
+import { ListUsersController } from './useCases/listUsersUseCase/ListUsersController';
+import { RejectDocumentController } from './useCases/rejectDocumentUseCase/RejectDocumentController';
+import { UploadDocumentController } from './useCases/uploadDocumentUseCase/UploadDocumentController';
+import { UserProfileController } from './useCases/userProfileUseCase/UserProfileController';
 
 export const router = Router();
 
 const createUserController = new CreateUserController();
 const listUserController = new ListUsersController();
 const authenticateUserController = new AuthenticateUserController();
+const userProfileController = new UserProfileController();
 const createDocumentController = new CreateDocumentController();
 const uploadDocumentController = new UploadDocumentController();
 const listAllDocumentsController = new ListAllDocumentsController();
@@ -43,6 +45,7 @@ router.get(
   ensureAdmin,
   listUserController.handle
 );
+router.get('/profile', ensureAuthenticated, userProfileController.handle);
 
 router.post(
   '/documents',
