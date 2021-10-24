@@ -2,11 +2,13 @@ import express from 'express';
 import { router } from './routes';
 import dotenv from 'dotenv';
 import { handleErrors } from './middleware/handleErrors';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
