@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { AppError } from '../errors/AppError';
-import prismaClient from '../prisma';
+import { prismaClient } from '../prisma';
 
 interface IPayload {
   sub: string;
@@ -12,15 +12,15 @@ export async function ensureAuthenticated(
   response: Response,
   next: NextFunction
 ): Promise<void> {
-  const authHeader = request.headers.authorization;
-
-  if (!authHeader) {
-    next(new AppError('JWT token is missing', 401));
-  }
-
-  const [, token] = authHeader.split(' ');
-
   try {
+    const authHeader = request.headers.authorization;
+
+    if (!authHeader) {
+      throw new AppError('JWT token is missing', 401);
+    }
+
+    const [, token] = authHeader.split(' ');
+
     const { sub: userId } = verify(token, process.env.JWT_SECRET) as IPayload;
 
     const user = await prismaClient.user.findFirst({
@@ -37,6 +37,6 @@ export async function ensureAuthenticated(
 
     next();
   } catch (err) {
-    next(new AppError('Invalid JWT token', 401));
+    next(err);
   }
 }
