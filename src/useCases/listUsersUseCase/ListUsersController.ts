@@ -7,11 +7,11 @@ export class ListUsersController {
     response: Response,
     next: NextFunction
   ): Promise<Response> {
-    const listUserUseCase = new ListUsersUseCase();
+    const listUsersUseCase = new ListUsersUseCase();
 
     try {
-      const categories = await listUserUseCase.execute();
-      return response.status(200).json(categories);
+      const users = await listUsersUseCase.execute();
+      return response.status(200).json(users);
     } catch (err) {
       next(err);
     }
