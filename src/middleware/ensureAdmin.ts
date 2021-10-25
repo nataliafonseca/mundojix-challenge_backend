@@ -16,7 +16,7 @@ export async function ensureAdmin(
   });
 
   if (user.role !== 'admin') {
-    next(new AppError('Forbidden operation', 403));
+    next(new AppError('Operação proibida', 403));
   }
 
   return next();

@@ -16,7 +16,7 @@ export async function ensureAuthenticated(
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-      throw new AppError('JWT token is missing', 401);
+      throw new AppError('Falha de autenticação', 401);
     }
 
     const [, token] = authHeader.split(' ');
@@ -30,7 +30,7 @@ export async function ensureAuthenticated(
     });
 
     if (!user) {
-      throw new AppError('User does not exist.', 401);
+      throw new AppError('Falha de autenticação', 401);
     }
 
     request.user = { id: user.id };

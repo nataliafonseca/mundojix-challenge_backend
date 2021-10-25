@@ -27,7 +27,7 @@ export class DeleteDocumentUseCase {
     });
 
     if (!document) {
-      throw new AppError('Document not found');
+      throw new AppError('O documento não existe');
     }
 
     if (document.status !== 0) {
@@ -37,7 +37,7 @@ export class DeleteDocumentUseCase {
     }
 
     if (user_id !== document.user_id) {
-      throw new AppError('You are not authorized to delete this document', 403);
+      throw new AppError('Operação proibida', 403);
     }
 
     await prismaClient.document.delete({

@@ -25,7 +25,7 @@ export class CreateDocumentUseCase {
     const user = await prismaClient.user.findFirst({ where: { id: user_id } });
 
     if (!user) {
-      throw new AppError('User not found');
+      throw new AppError('Usuário não encontrado');
     }
 
     const document = await prismaClient.document.create({

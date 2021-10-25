@@ -19,7 +19,7 @@ export class RejectDocumentUseCase {
     });
 
     if (!document) {
-      throw new AppError('Document not found');
+      throw new AppError('O documento não existe');
     }
 
     if (document.status !== 0) {

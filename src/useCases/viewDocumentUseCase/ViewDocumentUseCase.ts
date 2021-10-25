@@ -32,7 +32,7 @@ export class ViewDocumentUseCase {
     });
 
     if (!(user_id === document.user_id || user.role === 'admin')) {
-      throw new AppError('You are not authorized to view this document', 403);
+      throw new AppError('Operação proibida', 403);
     }
 
     return document;

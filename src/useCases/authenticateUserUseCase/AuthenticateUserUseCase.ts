@@ -31,13 +31,13 @@ export class AuthenticateUserUseCase {
     });
 
     if (!user) {
-      throw new AppError('Matrícula ou senha incorreta.');
+      throw new AppError('Matrícula ou senha incorreta');
     }
 
     const passwordMatches = await compare(password, user.password);
 
     if (!passwordMatches) {
-      throw new AppError('Matrícula ou senha incorreta.');
+      throw new AppError('Matrícula ou senha incorreta');
     }
 
     const userInfo = {
