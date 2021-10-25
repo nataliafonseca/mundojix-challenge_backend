@@ -24,25 +24,29 @@ export class ListUserDocumentsUseCase {
     if (status === 3) {
       const documents = await prismaClient.document.findMany({
         where: { user_id: user_id },
-        include: { user: true }
+        include: { user: true },
+        orderBy: { createdAt: 'desc' }
       });
       return documents;
     } else if (status === 2) {
       const documents = await prismaClient.document.findMany({
         where: { user_id: user_id, status: 2 },
-        include: { user: true }
+        include: { user: true },
+        orderBy: { createdAt: 'desc' }
       });
       return documents;
     } else if (status === 1) {
       const documents = await prismaClient.document.findMany({
         where: { user_id: user_id, status: 1 },
-        include: { user: true }
+        include: { user: true },
+        orderBy: { createdAt: 'desc' }
       });
       return documents;
     } else {
       const documents = await prismaClient.document.findMany({
         where: { user_id: user_id, status: 0 },
-        include: { user: true }
+        include: { user: true },
+        orderBy: { createdAt: 'desc' }
       });
       return documents;
     }
