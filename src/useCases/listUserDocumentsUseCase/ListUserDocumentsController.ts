@@ -17,6 +17,10 @@ export class ListUserDocumentsController {
         status: Number(status)
       });
 
+      if (page === 'all') {
+        return response.status(200).json(documents);
+      }
+
       const total = documents.length;
 
       const pageStart = (Number(page) - 1) * Number(per_page);
