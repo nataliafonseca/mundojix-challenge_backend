@@ -7,7 +7,8 @@ export class CreateDocumentController {
     response: Response,
     next: NextFunction
   ): Promise<Response> {
-    const { description, hours, type, user_id } = request.body;
+    const { description, hours, type } = request.body;
+    const { id: user_id } = request.user;
 
     const createDocumentUseCase = new CreateDocumentUseCase();
 
