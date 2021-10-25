@@ -14,6 +14,7 @@ import { ListUsersController } from './useCases/listUsersUseCase/ListUsersContro
 import { RejectDocumentController } from './useCases/rejectDocumentUseCase/RejectDocumentController';
 import { UploadDocumentController } from './useCases/uploadDocumentUseCase/UploadDocumentController';
 import { UserProfileController } from './useCases/userProfileUseCase/UserProfileController';
+import { ViewDocumentController } from './useCases/viewDocumentUseCase/ViewDocumentController';
 
 export const router = Router();
 
@@ -25,6 +26,7 @@ const createDocumentController = new CreateDocumentController();
 const uploadDocumentController = new UploadDocumentController();
 const listAllDocumentsController = new ListAllDocumentsController();
 const listUserDocumentsController = new ListUserDocumentsController();
+const viewDocumentController = new ViewDocumentController();
 const approveDocumentController = new ApproveDocumentController();
 const rejectDocumentController = new RejectDocumentController();
 
@@ -54,6 +56,13 @@ router.post(
   multer(multerConfig).single('file'),
   createDocumentController.handle
 );
+router.patch(
+  '/documents/upload',
+  ensureAuthenticated,
+  ensureStudent,
+  multer(multerConfig).single('file'),
+  uploadDocumentController.handle
+);
 router.get(
   '/documents',
   ensureAuthenticated,
@@ -66,12 +75,10 @@ router.get(
   ensureStudent,
   listUserDocumentsController.handle
 );
-router.patch(
-  '/documents/upload',
+router.get(
+  '/documents/:id',
   ensureAuthenticated,
-  ensureStudent,
-  multer(multerConfig).single('file'),
-  uploadDocumentController.handle
+  viewDocumentController.handle
 );
 router.patch(
   '/documents/approve',
