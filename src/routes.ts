@@ -8,6 +8,7 @@ import { ApproveDocumentController } from './useCases/approveDocumentUseCase/App
 import { AuthenticateUserController } from './useCases/authenticateUserUseCase/AuthenticateUserController';
 import { CreateDocumentController } from './useCases/createDocumentUseCase/CreateDocumentController';
 import { CreateUserController } from './useCases/createUserUseCase/CreateUserController';
+import { DeleteDocumentController } from './useCases/deleteDocumentUseCase/DeleteDocumentController';
 import { ListAllDocumentsController } from './useCases/listAllDocumentsUseCase/ListAllDocumentsController';
 import { ListUserDocumentsController } from './useCases/listUserDocumentsUseCase/ListUserDocumentsController';
 import { ListUsersController } from './useCases/listUsersUseCase/ListUsersController';
@@ -27,6 +28,7 @@ const uploadDocumentController = new UploadDocumentController();
 const listAllDocumentsController = new ListAllDocumentsController();
 const listUserDocumentsController = new ListUserDocumentsController();
 const viewDocumentController = new ViewDocumentController();
+const deleteDocumentController = new DeleteDocumentController();
 const approveDocumentController = new ApproveDocumentController();
 const rejectDocumentController = new RejectDocumentController();
 
@@ -79,6 +81,11 @@ router.get(
   '/documents/:id',
   ensureAuthenticated,
   viewDocumentController.handle
+);
+router.delete(
+  '/documents/:id',
+  ensureAuthenticated,
+  deleteDocumentController.handle
 );
 router.patch(
   '/documents/approve',
