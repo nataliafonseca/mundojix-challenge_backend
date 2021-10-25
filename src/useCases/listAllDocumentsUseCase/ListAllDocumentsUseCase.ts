@@ -12,11 +12,30 @@ type Document = {
 };
 
 export class ListAllDocumentsUseCase {
-  async execute(): Promise<Document[]> {
-    const documents = await prismaClient.document.findMany({
-      include: { user: true }
-    });
-
-    return documents;
+  async execute(status: number): Promise<Document[]> {
+    if (status === 3) {
+      const documents = await prismaClient.document.findMany({
+        include: { user: true }
+      });
+      return documents;
+    } else if (status === 2) {
+      const documents = await prismaClient.document.findMany({
+        where: { status: 2 },
+        include: { user: true }
+      });
+      return documents;
+    } else if (status === 1) {
+      const documents = await prismaClient.document.findMany({
+        where: { status: 1 },
+        include: { user: true }
+      });
+      return documents;
+    } else {
+      const documents = await prismaClient.document.findMany({
+        where: { status: 0 },
+        include: { user: true }
+      });
+      return documents;
+    }
   }
 }

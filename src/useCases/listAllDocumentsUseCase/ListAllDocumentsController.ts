@@ -8,10 +8,10 @@ export class ListAllDocumentsController {
     next: NextFunction
   ): Promise<Response> {
     const listAllDocumentsUseCase = new ListAllDocumentsUseCase();
-    const { page = 1, per_page = 10 } = request.query;
+    const { page = 1, per_page = 10, status = 3 } = request.query;
 
     try {
-      const documents = await listAllDocumentsUseCase.execute();
+      const documents = await listAllDocumentsUseCase.execute(Number(status));
 
       const total = documents.length;
 

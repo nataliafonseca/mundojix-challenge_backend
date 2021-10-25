@@ -9,10 +9,13 @@ export class ListUserDocumentsController {
   ): Promise<Response> {
     const listUserDocumentsUseCase = new ListUserDocumentsUseCase();
     const user_id = request.user.id;
-    const { page = 1, per_page = 10 } = request.query;
+    const { page = 1, per_page = 10, status = 3 } = request.query;
 
     try {
-      const documents = await listUserDocumentsUseCase.execute(user_id);
+      const documents = await listUserDocumentsUseCase.execute({
+        user_id,
+        status: Number(status)
+      });
 
       const total = documents.length;
 
