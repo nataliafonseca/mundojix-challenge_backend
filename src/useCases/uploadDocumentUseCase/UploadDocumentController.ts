@@ -13,7 +13,7 @@ export class UploadDocumentController {
     next: NextFunction
   ): Promise<Response> {
     const file: FileResponse = request.file;
-    const { document_id } = request.body;
+    const { id: document_id } = request.params;
 
     const uploadDocumentUseCase = new UploadDocumentUseCase();
 

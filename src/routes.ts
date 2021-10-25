@@ -59,7 +59,7 @@ router.post(
   createDocumentController.handle
 );
 router.patch(
-  '/documents/upload',
+  '/documents/upload/:id',
   ensureAuthenticated,
   ensureStudent,
   multer(multerConfig).single('file'),
