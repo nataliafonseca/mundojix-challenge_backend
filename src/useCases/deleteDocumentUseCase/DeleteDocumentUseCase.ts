@@ -26,6 +26,16 @@ export class DeleteDocumentUseCase {
       where: { id: document_id }
     });
 
+    if (!document) {
+      throw new AppError('Document not found');
+    }
+
+    if (document.status !== 0) {
+      throw new AppError(
+        'Documento já homologado, não é possível realizar alterações.'
+      );
+    }
+
     if (user_id !== document.user_id) {
       throw new AppError('You are not authorized to delete this document', 403);
     }

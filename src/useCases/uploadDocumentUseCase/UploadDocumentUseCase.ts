@@ -22,15 +22,21 @@ export class UploadDocumentUseCase {
     document_id,
     pdf
   }: UploadDocumentRequest): Promise<Document> {
-    const documentExists = await prismaClient.document.findFirst({
+    let document = await prismaClient.document.findFirst({
       where: { id: document_id }
     });
 
-    if (!documentExists) {
+    if (!document) {
       throw new AppError('O documento não existe.');
     }
 
-    const document = await prismaClient.document.update({
+    if (document.status !== 0) {
+      throw new AppError(
+        'Documento já homologado, não é possível realizar alterações.'
+      );
+    }
+
+    document = await prismaClient.document.update({
       where: { id: document_id },
       data: { pdf }
     });
