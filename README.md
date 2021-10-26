@@ -20,11 +20,11 @@ Trata-se de um modulo/sistema para validação de horas extracurriculares, onde 
 
 Foi solicitada a implementação de uma interface de exibição dos documentos enviados pelo estudante, contendo:
 
-[x] Grid com a lista de documentos enviados pelo aluno;
-[x] Coluna com link do nome do documento para acesso ao documento;
-[x] Coluna com o tipo de atividade do certificado;
-[x] Coluna com a quantidade de horas;
-[x] Coluna com o status do documento: Homologado / Não-Homologado.
+[x] Grid com a lista de documentos enviados pelo aluno;  
+[x] Coluna com link do nome do documento para acesso ao documento;  
+[x] Coluna com o tipo de atividade do certificado;  
+[x] Coluna com a quantidade de horas;  
+[x] Coluna com o status do documento: Homologado / Não-Homologado.  
 
 Além disso, foi sugerida a implementação da função de backend para consultar os dados no banco e retornar um objeto ao front com a lista dos certificados do usuário.
 
@@ -55,11 +55,11 @@ A API poderá ser acessada em http://localhost:4000.
 
 ## Tecnologias 💻
 
-O backend da aplicação foi implementado em **Node.js** utilizando a linguagem **TypeScript**.
-Para criar a API REST, foi utilizado o framework **express**.
-O banco de dados utilizado foi **PostgreSQL**, provisionado no serviço **RDS** da AWS.
-Para o armazenamento dos documentos enviados, foi utilizado um bucket no serviço **S3** da AWS.
-O deploy da API foi feito no **Heroku**.
+O backend da aplicação foi implementado em **Node.js** utilizando a linguagem **TypeScript**.  
+Para criar a API REST, foi utilizado o framework **express**.  
+O banco de dados utilizado foi **PostgreSQL**, provisionado no serviço **RDS** da AWS.  
+Para o armazenamento dos documentos enviados, foi utilizado um bucket no serviço **S3** da AWS.  
+O deploy da API foi feito no **Heroku**.  
 
 ## Licença 📃
 
