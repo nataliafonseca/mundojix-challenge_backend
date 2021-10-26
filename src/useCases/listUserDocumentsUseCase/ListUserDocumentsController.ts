@@ -17,7 +17,7 @@ export class ListUserDocumentsController {
         status: Number(status)
       });
 
-      if (page === 'all') {
+      if (Number(page) === 0) {
         return response.status(200).json(documents);
       }
 

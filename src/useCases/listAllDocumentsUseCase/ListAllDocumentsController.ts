@@ -13,7 +13,7 @@ export class ListAllDocumentsController {
     try {
       const documents = await listAllDocumentsUseCase.execute(Number(status));
 
-      if (page === 'all') {
+      if (Number(page) === 0) {
         return response.status(200).json(documents);
       }
 
