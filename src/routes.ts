@@ -33,7 +33,7 @@ const approveDocumentController = new ApproveDocumentController();
 const rejectDocumentController = new RejectDocumentController();
 
 router.get('/', (request, response) => {
-  return response.json({ hello: 'MagisterDoc' });
+  return response.json({ hello: 'Bem vindo ao SysDoc' });
 });
 
 router.post(

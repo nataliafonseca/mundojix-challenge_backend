@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "MagisterDoc Documentation",
-    "description": "This project is part of a challenge proposed by Mundo Jix. To test, you will need an admin account to authenticate and get your Bearer Token. Fell free to use {enrolment: \"123456\", password: \"123456\"} as credentials.",
+    "title": "SysDoc Documentation",
+    "description": "This project was created as part of a challenge proposed by Mundo Jix. To test, you might need admin and student accounts to authenticate and get your Bearer Token. Fell free to use {enrolment: \"123456\", password: \"123456\"} for the admin and {enrolment: \"1234567890\", password: \"123456\"} for the student as credentials.",
     "version": "1.0.0",
     "contact": {
       "email": "nataliabf@outlook.com"
